@@ -44,3 +44,21 @@ body {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
+
+@media (max-width: 1200px) {
+  .custom_bar {
+    display: inline-block;
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    font-family: 'Font Awesome 6 Free';
+  }
+}
+
+.custom_spin_button {
+  transform: rotate(360deg);
+  transition: all 1s;
+}

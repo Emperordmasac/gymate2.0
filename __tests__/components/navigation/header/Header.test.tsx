@@ -1,29 +1,53 @@
 import Header from '@/components/navigation/header/Header';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-describe('Header component', () => {
-  test('renders logo image with correct attributes', () => {
+describe('Header', () => {
+  it('should toggle the sticky state when scrolling', () => {
     render(<Header />);
-    const logoImage = screen.getByAltText('company logo');
 
-    // Assert that the logo image is rendered
-    expect(logoImage).toBeInTheDocument();
+    // Mock scrollY value
+    Object.defineProperty(window, 'scrollY', { value: 0 });
 
-    // Assert the correct attributes of the logo image
-    expect(logoImage).toHaveAttribute('src', '/images/logo/logo.svg');
-    expect(logoImage).toHaveAttribute('width', '100');
-    expect(logoImage).toHaveAttribute('height', '100');
-    expect(logoImage).toHaveClass('w-full h-auto');
+    fireEvent.scroll(window);
+
+    const nav = screen.getByRole('navigation');
+    expect(nav).toHaveClass('bg-transparent');
+
+    Object.defineProperty(window, 'scrollY', { value: 20 });
+
+    fireEvent.scroll(window);
+
+    expect(nav).toHaveClass('!bg-black');
   });
 
-  // test('renders navigation link', () => {
-  //   render(<Header />);
-  //   const navigationLink = screen.getByRole('link', { name: 'Home' });
+  it('should open and close the mobile navigation on icon click', () => {
+    render(<Header />);
 
-  //   // Assert that the navigation link is rendered
-  //   expect(navigationLink).toBeInTheDocument();
+    const icon = screen.getByRole('toggle_moble_nav');
 
-  //   // Add additional assertions if needed
-  // });
+    fireEvent.click(icon);
+
+    const mobileNav = screen.getByRole('mobile_nav');
+    expect(mobileNav).toHaveClass('left-0');
+
+    fireEvent.click(icon);
+
+    expect(mobileNav).not.toHaveClass('left-0');
+  });
+
+  it('should open and close the sidebar on icon click', () => {
+    render(<Header />);
+
+    const icon = screen.getByRole('toggle_sidebar_nav');
+
+    fireEvent.click(icon);
+
+    const sidebar = screen.getByRole('sidebar_nav');
+    expect(sidebar).toHaveClass('left-0');
+
+    fireEvent.click(icon);
+
+    expect(sidebar).not.toHaveClass('left-0');
+  });
 });
