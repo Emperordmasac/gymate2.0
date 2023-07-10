@@ -1,4 +1,4 @@
-import JOinUsButton from '@/components/utility/button/JoinUsButton';
+import JOinUsButton from '@/features/ui/header/components/join-us-button';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 

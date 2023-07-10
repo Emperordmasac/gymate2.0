@@ -1,4 +1,4 @@
-import useToggle from '@/lib/hooks/useToggle';
+import useToggle from '@/features/ui/header/hooks/use-toggle';
 import '@testing-library/jest-dom';
 import { act, renderHook } from '@testing-library/react';
 

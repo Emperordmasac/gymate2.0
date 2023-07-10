@@ -1,4 +1,4 @@
-import Header from '@/components/navigation/header/Header';
+import Header from '@/features/ui/header/header';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 

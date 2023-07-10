@@ -1,19 +1,17 @@
 'use client';
 
-import JOinUsButton from './components/join-us-button';
-import useToggle from './hooks/use-toggle';
+//--INTERNAL IMPORTS
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import mainNavList from './utils/constants/nav.constants';
+
+//--External IMPORTS
+import JOinUsButton from '@/features/ui/header/components/join-us-button';
+import useToggle from '@/features/ui/header/hooks/use-toggle';
+import mainNavList from '@/features/ui/header/utils/constants/nav.constants';
+import goToTopPage from './utils/helpers/go-to-page-top';
 
 export interface IHeader {}
-
-const goToTop = () => {
-  window.scrollTo({
-    top: 0,
-  });
-};
 
 const Header: React.FC<IHeader> = () => {
   const [isSticky, toggleIsSticky] = useToggle(true);
@@ -42,6 +40,7 @@ const Header: React.FC<IHeader> = () => {
       }`}
     >
       <Link href="/">
+        {/* brand logo */}
         <Image
           priority={true}
           src="/images/logo/logo.svg"
@@ -51,11 +50,13 @@ const Header: React.FC<IHeader> = () => {
           height="100"
         />
       </Link>
+      {/* desktop navigation */}
       <div className="md1200:hidden">
         <DesktopNavigation />
       </div>
       <div className="flex items-center gap-8">
         <div className="flex gap-10">
+          {/* mobile navigation */}
           <div
             className={`bg-white h-screen w-full flex flex-col top-0 fixed z-[999999999] py-[60px] px-[40px] ease-in-out duration-500  ${
               isOpen ? 'left-0' : '-left-[100%]'
@@ -68,6 +69,7 @@ const Header: React.FC<IHeader> = () => {
             ></i>
             <MobileNavigation />
           </div>
+          {/* sidebar navigation */}
           <div
             className={`bg-white min450:w-full h-[100vh] p-[45px] w-[40rem] top-0 flex flex-col fixed z-[999999999] gap-24 overflow-x-hidden ease-in-out duration-[0.5s] ${
               sidebar ? 'left-0' : '-left-[100%]'
@@ -76,6 +78,7 @@ const Header: React.FC<IHeader> = () => {
           >
             <Sidebar toggleSidebar={toggleSidebar} />
           </div>
+          {/* navigation controllers */}
           <i
             onClick={() => toggleIsOpen()}
             className={`fa-bars custom_bar text-white text-4xl cursor-pointer hover:text-[#ff0336] ease-in duration-200 hidden ml-10`}
@@ -86,7 +89,8 @@ const Header: React.FC<IHeader> = () => {
             role="toggle_sidebar_nav"
             className="fa-regular fa-chart-bar text-white text-4xl cursor-pointer hover:text-[#ff0336] ease-in duration-200"
           ></i>
-          <Link onClick={goToTop} href="signup" title="signupbutton">
+          {/* user profile */}
+          <Link onClick={goToTopPage} href="signup" title="signupbutton">
             <i className="fa-regular fa-user text-white text-4xl cursor-pointer hover:text-[#ff0336] ease-in duration-200"></i>
           </Link>
         </div>
@@ -108,7 +112,7 @@ const DesktopNavigation = () => {
             style={{ transition: 'all 0.3s' }}
             className="cursor-pointer hover:text-[#ff0336]"
           >
-            <Link onClick={goToTop} href={nav.url}>
+            <Link onClick={goToTopPage} href={nav.url}>
               {nav.title}
             </Link>
           </li>
@@ -127,7 +131,7 @@ const MobileNavigation = () => {
             key={nav.id}
             className="text-[2rem] font-medium hover:text-[#ff0336] ease-in duration-200"
           >
-            <Link onClick={goToTop} href={nav.url}>
+            <Link onClick={goToTopPage} href={nav.url}>
               {nav.title}
             </Link>
           </li>

@@ -1,5 +1,10 @@
-import { Header } from '@/features/ui';
+import { Footer, Header } from '@/features/ui';
 
 export default function Home() {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  );
 }
