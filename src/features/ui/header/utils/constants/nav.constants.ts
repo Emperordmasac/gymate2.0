@@ -1,4 +1,4 @@
-export const mainNavList = [
+const mainNavList = [
   {
     id: 1,
     url: '/',
@@ -39,4 +39,6 @@ export const mainNavList = [
     url: '/contact',
     title: 'Contact',
   },
-]
+];
+
+export default mainNavList;

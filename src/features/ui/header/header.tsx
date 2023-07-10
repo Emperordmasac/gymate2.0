@@ -1,11 +1,11 @@
 'use client';
 
-import JOinUsButton from '@/components/utility/button/JoinUsButton';
-import useToggle from '@/lib/hooks/useToggle';
+import JOinUsButton from './components/join-us-button';
+import useToggle from './hooks/use-toggle';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { mainNavList } from '../../utility/navigation/constants';
+import mainNavList from './utils/constants/nav.constants';
 
 export interface IHeader {}
 

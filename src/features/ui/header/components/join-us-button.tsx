@@ -1,5 +1,5 @@
-import useToggle from '@/lib/hooks/useToggle';
 import Link from 'next/link';
+import useToggle from '../hooks/use-toggle';
 
 const goToTop = () => {
   window.scrollTo({
